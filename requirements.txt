@@ -1,3 +1,0 @@
-pillow
-tkinterdnd2
-pyinstaller
