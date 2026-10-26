@@ -123,11 +123,10 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # a pushed tag (v1.0.x) or the tag typed into "Run workflow"
       RELEASE_TAG: ${{ github.event.inputs.release_tag || github.ref_name }}
-      VT_API_KEY: ${{ secrets.VT_API_KEY }}   # optional: add this repository secret to scan on VirusTotal
     steps:
       # GitHub "immutable releases": once a release is published its assets can never be changed or deleted,
       # and the tag name can never be reused. So re-running this job for a tag that is already published
-      # would fail ("Cannot delete asset from an immutable release"). Detect that and stop politely.
+      # would fail. Detect that and stop politely.
       - name: Is this tag already published?
         id: chk
         run: |
@@ -148,11 +147,30 @@ jobs:
           path: dist-all
           merge-multiple: true
 
-      - name: Checksums
+      - name: Checksums and release notes
         if: steps.chk.outputs.published != 'true'
         run: |
           cd dist-all
           sha256sum *.exe | tee SHA256SUMS.txt
+          {
+            echo "## Seegha $RELEASE_TAG"
+            echo
+            echo "| File | SHA-256 | VirusTotal |"
+            echo "|---|---|---|"
+            while read -r hash name; do
+              echo "| \`$name\` | \`$hash\` | [report](https://www.virustotal.com/gui/file/$hash) |"
+            done < <(sha256sum *.exe)
+            echo
+            echo "**Seegha.exe** (lite) downloads the 45 MB AI pack the first time AI upscaling is used. **Seegha-Full.exe** includes it (works offline)."
+            echo
+            echo "Verify your download: compare the SHA-256 above with \`SHA256SUMS.txt\`, or run \`gh attestation verify <file> --repo $GITHUB_REPOSITORY\`."
+            echo "The VirusTotal link shows a report once the file has been scanned there."
+            echo
+            echo "---"
+            echo
+            echo "**Seegha (صيغة)** محوّل صور وفيديو وصوت مجاني. **Seegha.exe** النسخة الخفيفة، و**Seegha-Full.exe** تحتوي حزمة رفع الجودة وتشتغل بدون إنترنت."
+          } > ../notes.md
+          cat ../notes.md
 
       # Signed, public proof that these exact files were built by this workflow from this repository.
       - name: Build provenance attestation
@@ -163,30 +181,18 @@ jobs:
           subject-path: dist-all/*.exe
 
       # Draft first: assets can only be attached while a release is still a draft (immutable-release rule).
+      # Uses the GitHub CLI that is preinstalled on the runner, so no third-party action is needed.
       - name: Create draft release and attach files
         if: steps.chk.outputs.published != 'true'
-        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
-        with:
-          draft: true
-          tag_name: ${{ env.RELEASE_TAG }}
-          target_commitish: ${{ github.sha }}
-          generate_release_notes: true
-          files: |
-            dist-all/*.exe
-            dist-all/SHA256SUMS.txt
+        run: |
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Removing a leftover draft release for $RELEASE_TAG"
+            gh release delete "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --yes
+          fi
+          gh release create "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --draft \
+            --target "$GITHUB_SHA" --title "Seegha $RELEASE_TAG" --notes-file notes.md \
+            dist-all/*.exe dist-all/SHA256SUMS.txt
 
       - name: Publish the release
         if: steps.chk.outputs.published != 'true'
         run: gh release edit "$RELEASE_TAG" --draft=false --repo "$GITHUB_REPOSITORY"
-
-      # Optional: scans the exes on VirusTotal and adds the report links to the release notes.
-      - name: Scan on VirusTotal
-        if: ${{ steps.chk.outputs.published != 'true' && env.VT_API_KEY != '' }}
-        continue-on-error: true
-        uses: crazy-max/ghaction-virustotal@d34968c958ae283fe976efed637081b9f9dcf74f # v4.2.0
-        with:
-          vt_api_key: ${{ env.VT_API_KEY }}
-          update_release_body: true
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          files: |
-            dist-all/*.exe
