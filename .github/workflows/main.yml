@@ -115,36 +115,60 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       VT_API_KEY: ${{ secrets.VT_API_KEY }}   # optional: add this repository secret to scan on VirusTotal
     steps:
+      # GitHub "immutable releases": once a release is published its assets can never be changed or deleted,
+      # and the tag name can never be reused. So re-running this job for a tag that is already published
+      # would fail ("Cannot delete asset from an immutable release"). Detect that and stop politely.
+      - name: Is this tag already published?
+        id: chk
+        run: |
+          if [ "$(gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --json isDraft -q .isDraft 2>/dev/null)" = "false" ]; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Release $GITHUB_REF_NAME is already published and cannot be modified. Push a NEW tag (for example v1.0.1) to make another release."
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/download-artifact@v4
+        if: steps.chk.outputs.published != 'true'
         with:
           path: dist-all
           merge-multiple: true
 
       - name: Checksums
+        if: steps.chk.outputs.published != 'true'
         run: |
           cd dist-all
           sha256sum *.exe | tee SHA256SUMS.txt
 
       # Signed, public proof that these exact files were built by this workflow from this repository.
       - name: Build provenance attestation
+        if: steps.chk.outputs.published != 'true'
         continue-on-error: true
         uses: actions/attest-build-provenance@v2
         with:
           subject-path: dist-all/*.exe
 
-      - name: Publish release
+      # Draft first: assets can only be attached while a release is still a draft (immutable-release rule).
+      - name: Create draft release and attach files
+        if: steps.chk.outputs.published != 'true'
         uses: softprops/action-gh-release@v2
         with:
+          draft: true
           generate_release_notes: true
           files: |
             dist-all/*.exe
             dist-all/SHA256SUMS.txt
 
+      - name: Publish the release
+        if: steps.chk.outputs.published != 'true'
+        run: gh release edit "$GITHUB_REF_NAME" --draft=false --repo "$GITHUB_REPOSITORY"
+
       # Optional: scans the exes on VirusTotal and adds the report links to the release notes.
       - name: Scan on VirusTotal
-        if: ${{ env.VT_API_KEY != '' }}
+        if: ${{ steps.chk.outputs.published != 'true' && env.VT_API_KEY != '' }}
         continue-on-error: true
         uses: crazy-max/ghaction-virustotal@v4
         with:
