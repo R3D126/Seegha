@@ -1,300 +1,148 @@
-<div align="center">
+# Seegha (صيغة) — by R3D
 
-# ✨ Seegha (صيغة)
-### 🚀 by R3D
+**English** | [العربية](#العربية)
 
-**🎞️ Convert · 🪄 Enhance · ⚡ Enjoy**  
-**حوّل ملفاتك · حسّن جودتها · واستمتع بالسرعة**
+Free, fast file converter for Windows: **images, video and audio**, with optional **AI upscaling** (Real-ESRGAN).
+One portable exe — nothing to install. UI in **English and Arabic** (switch live, top-right corner).
 
-A free, lightweight, and fast media converter for Windows — with optional AI-powered upscaling.
+## Which file do I download?
+| File | Size | AI upscaling |
+|---|---|---|
+| **Seegha.exe** (lite, recommended) | ~35 MB | downloads a 45 MB pack once, the first time you use it |
+| **Seegha-Full.exe** | ~80 MB | built in, works fully offline |
 
-برنامج مجاني وخفيف وسريع لتحويل الصور والفيديو والصوت، مع إمكانية تحسين الجودة بالذكاء الاصطناعي.
+Get them from the **Releases** page (or the latest **Actions** run → Artifacts).
 
-🌐 **English | العربية**  
-[⬇️ Download Seegha](https://github.com/R3D126/Seegha/releases/latest)
+## Features
+- Images: png, jpg, webp, bmp, gif, tiff, ico. Video: mp4, mkv, webm, avi, mov, gif. Audio: mp3, wav, flac, aac, ogg, m4a.
+- The format list adapts to your files (video → video formats only, images → image formats only).
+- **Audio options for video:** keep audio · **no audio (video only)** · audio only.
+- **Fast mode:** change the container (e.g. mkv → mp4) without re-encoding when possible.
+- **AI upscaling** for images and video (real detail reconstruction, not plain resizing).
+- **Light and dark theme** (follows Windows on first run), **Stop** button, drag & drop, batch conversion, command line, never overwrites your originals.
 
-</div>
+## AI upscaling — what to expect
+- Needs a Vulkan-capable GPU (NVIDIA / AMD / Intel). There is no CPU mode.
+- **GPU usage** (default *Light*): *Light* keeps the PC responsive, *Balanced* is faster, *Maximum* is fastest but may slow the whole PC.
+  Seegha runs the AI at low priority, in chunks of 100 frames, and **retries automatically with smaller tiles** if the GPU driver resets.
+- **Video output is capped at 4K (3840×2160).** A 1080p video at ×4 would be 8K, which exhausts RAM/VRAM/disk and freezes the PC,
+  so Seegha lowers the scale automatically (1080p → ×2) and tells you. Realistic/anime models are ×4 only; the fast model supports ×2/×3/×4.
+- **Video is slow**: every frame goes through the model, and it needs lots of free disk space (checked before starting).
+- The AI *guesses* plausible detail. The result is far better than normal resizing, but it is not the original high-resolution source.
 
----
-
-## 🌟 Highlights | أبرز المميزات
-
-- 🖼️ **Image conversion | تحويل الصور**
-- 🎬 **Video conversion | تحويل الفيديو**
-- 🎵 **Audio conversion & extraction | تحويل الصوت واستخراجه**
-- 🤖 **AI upscaling with Real-ESRGAN | تحسين الجودة بالذكاء الاصطناعي**
-- 🌙 **Dark mode & ☀️ Light mode | الوضع الداكن والفاتح**
-- ⚡ **Fast mode, batch conversion, and drag & drop | وضع سريع وتحويل جماعي وسحب وإفلات**
-- 📦 **Portable — no installation required | نسخة محمولة بدون تثبيت**
-- 🌍 **English and Arabic interface | واجهة باللغتين العربية والإنجليزية**
-
----
-
-# 🇬🇧 English
-
-## 📖 About Seegha
-
-**Seegha** is a free, lightweight, and fast media converter for Windows. It helps you convert **images, videos, and audio** between supported formats, with optional **AI-powered upscaling using Real-ESRGAN**.
-
-The app is portable, so there is no traditional installation process. Switch between English and Arabic directly from the interface.
-
-## 📥 Which version should I download?
-
-| File | Approx. size | AI upscaling |
-|---|---:|---|
-| **Seegha.exe** ⭐ Recommended | ~35 MB | Downloads an ~45 MB AI pack the first time you use it |
-| **Seegha-Full.exe** | ~80 MB | AI pack included; designed to work offline |
-
-➡️ **[Download the latest release](https://github.com/R3D126/Seegha/releases/latest)**
-
-Download the `.exe` that suits your needs from the **Releases** page.
-
-## 🧰 Features
-
-- 🖼️ **Images:** PNG, JPG, WebP, BMP, GIF, TIFF, ICO.
-- 🎬 **Video:** MP4, MKV, WebM, AVI, MOV, GIF.
-- 🎵 **Audio:** MP3, WAV, FLAC, AAC, OGG, M4A.
-- 🎯 **Smart format list:** options adapt to the selected media type.
-- 🔊 **Video audio options:** keep audio, mute the output, or extract audio only.
-- ⚡ **Fast mode:** changes the container (for example, MKV → MP4) without re-encoding when possible.
-- 🤖 **AI upscaling:** enhance images and videos with Real-ESRGAN models.
-- 🎨 **Personalized appearance:** light and dark themes; follows the Windows theme on first launch.
-- 🛑 **Stop button:** stop a conversion when needed.
-- 📂 **Batch conversion & drag and drop:** work with multiple files more conveniently.
-- ⌨️ **Command-line support:** run supported conversion tasks from a terminal.
-- 🛡️ **Protects originals:** Seegha does not overwrite your original files.
-
-## 🤖 AI upscaling — what to expect
-
-- 🖥️ **GPU required:** AI upscaling needs a Vulkan-capable GPU (NVIDIA, AMD, or Intel). CPU-only AI mode is not available.
-- 🎚️ **GPU usage modes:** **Light** prioritizes responsiveness, **Balanced** offers a middle ground, and **Maximum** prioritizes speed but may make the PC less responsive.
-- 🔄 **Recovery handling:** processing runs at low priority in batches of 100 frames and can retry with smaller tiles if a GPU driver reset occurs.
-- 📺 **Video output limit:** output is capped at **4K (3840 × 2160)**. If the requested scale would exceed this limit, Seegha reduces the scale automatically and notifies you. For example, 1080p video is scaled up to ×2 rather than ×4.
-- 🧠 **Model options:** Realistic and Anime models support ×4; the Fast model supports ×2, ×3, and ×4.
-- ⏳ **Video processing takes time:** every frame must be processed, and substantial free disk space may be needed. Available space is checked before processing.
-- 💡 **A realistic expectation:** AI reconstructs plausible details; results can look sharper than ordinary resizing, but they cannot restore the exact information from a genuine high-resolution original.
-
-## 🪟 Windows compatibility
-
-| Operating system | Status |
+## Windows support
+| System | Status |
 |---|---|
-| Windows 10 / 11 (64-bit) | ✅ Supported |
-| Windows 8 / 8.1 (64-bit) | ✅ Supported |
-| Windows 7 SP1 (64-bit) | ⚠️ Targeted — see notes below |
-| 32-bit Windows | ❌ Not supported |
+| Windows 10 / 11 (64-bit) | Supported |
+| Windows 8 / 8.1 (64-bit) | Supported |
+| Windows 7 SP1 (64-bit) | Targeted — see notes |
+| 32-bit Windows | **Not supported** (ffmpeg and Real-ESRGAN builds are 64-bit only) |
 
-**Windows 7 notes:** Install Service Pack 1 (SP1) and the Universal C Runtime update (**KB2999226**), or run Windows Update. Seegha is built with Python 3.8 and an FFmpeg build documented as Windows-7-compatible. AI upscaling also requires a suitable Vulkan driver.
+Windows 7: install SP1 and the Universal C Runtime update (**KB2999226**) or run Windows Update. Seegha is built with Python 3.8
+(the last Python for Windows 7) and an ffmpeg build documented as Windows-7-compatible. AI upscaling needs a Vulkan driver.
+If ffmpeg refuses to start on your system, put your own `ffmpeg.exe` next to `Seegha.exe` — it is used first.
 
-If FFmpeg does not start on your system, try placing your own `ffmpeg.exe` next to `Seegha.exe`; Seegha checks for it first.
+## Files Seegha creates
+`%LOCALAPPDATA%\Seegha\` — `config.json` (language), `bin\` (ffmpeg, unpacked once from inside the exe), `realesrgan\` (AI pack, lite build only).
+Temporary frames for video upscaling live in a `seegha_*` temp folder and are removed when finished, stopped, or at the next start.
 
-## 📁 Files created by Seegha
-
-Seegha stores its application data in:
-
-`%LOCALAPPDATA%\Seegha\`
-
-- `config.json` — settings such as the interface language.
-- `bin\` — FFmpeg files unpacked from the executable when needed.
-- `realesrgan\` — AI pack used by the Lite build.
-- `seegha_*` temporary folders — temporary video frames used during AI upscaling.
-
-Temporary frames are removed after processing, when a task is stopped, or at the next launch.
-
-## ⌨️ Command line
-
-```bash
+## Command line
+```
 Seegha.exe -t jpg *.png
-Seegha.exe -t mp4 --mute video.mkv
-Seegha.exe -t mp3 video.mp4
-Seegha.exe -t png --upscale 4 small.jpg
+Seegha.exe -t mp4 --mute video.mkv            # video without audio
+Seegha.exe -t mp3 video.mp4                   # extract audio
+Seegha.exe -t png --upscale 4 small.jpg       # AI upscale (downloads the pack if needed)
 Seegha.exe -t mp4 --upscale 2 --model fast --gpu balanced clip.mp4
-Seegha.exe --install-ai
+Seegha.exe --install-ai                       # only download the AI pack
 ```
+The exe is a windowed app, so it prints nothing in a console; run `python seegha.py ...` from source to see messages.
 
-Examples:
-- Convert PNG images to JPG.
-- Convert a video to MP4 without audio using `--mute`.
-- Extract audio from a video to MP3.
-- Upscale an image with AI.
-- Upscale a video using the Fast model and Balanced GPU mode.
-- Download the AI pack without starting a conversion.
+## Build it yourself
+Push to GitHub → **Actions** → *Build Seegha* → download `Seegha` and `Seegha-Full` from Artifacts. Push a tag like `v1.0.0` to publish both on Releases.
+From source: `pip install -r requirements.txt` then `python seegha.py` (ffmpeg on PATH or `ffmpeg.exe` next to the script).
 
-The packaged executable is a windowed application and may not show console output. To see console messages, run `python seegha.py ...` from source.
+## Is it safe? (antivirus / VirusTotal)
+Seegha is open source and the exe is built by the public GitHub Actions workflow in this repository (no hidden steps).
+- Compare your download with `SHA256SUMS.txt` on the Releases page, or verify the build attestation:
+  `gh attestation verify Seegha.exe --repo <owner>/<repo>`.
+- Scan it yourself on https://www.virustotal.com (upload the exe or search its SHA-256).
+- **A few engines may flag it anyway.** Programs packaged with PyInstaller are a well-known source of *false positives*
+  (generic "machine-learning" detections), and Seegha unpacks ffmpeg on first run. If you see a detection from a lesser-known engine,
+  it is almost certainly a false positive: report it to that vendor (every vendor has a free "submit a false positive" form).
+- Seegha only touches the files you choose, writes to `%LOCALAPPDATA%\Seegha` and a temp folder, and uses the internet **only** to download the optional AI pack from GitHub.
 
-## 🛠️ Build Seegha yourself
-
-1. Push your changes to GitHub.
-2. Open **Actions** and select **Build Seegha**.
-3. Download the `Seegha` and `Seegha-Full` build artifacts.
-4. Push a tag such as `v1.0.0` to publish both builds to Releases.
-
-To run from source:
-
-```bash
-pip install -r requirements.txt
-python seegha.py
-```
-
-FFmpeg must be available on `PATH` or placed next to the script as `ffmpeg.exe`.
-
-## 🔐 Security, antivirus & VirusTotal
-
-Seegha's source code and build workflow are available in this repository. As with any executable, review the source and scan downloads if you have concerns.
-
-- 🧾 Compare the downloaded file with `SHA256SUMS.txt` on the Releases page, if provided.
-- 🛡️ If a build attestation is available, verify it with GitHub CLI:
-  ```bash
-  gh attestation verify Seegha.exe --repo <owner>/<repo>
-  ```
-- 🔎 You can scan the executable using [VirusTotal](https://www.virustotal.com/).
-
-**Antivirus detections:** Applications packaged with PyInstaller, and executables that unpack bundled tools, can sometimes receive false-positive detections. However, a detection should not automatically be assumed harmless. Check the detection details, verify the file's source and hash, and report suspected false positives to the relevant vendor.
-
-Seegha is designed to process the files you select, store its app data in `%LOCALAPPDATA%\Seegha` and temporary files in a temporary folder, and use the internet to download the optional AI pack from GitHub when needed.
-
-## 📄 License
-
-- **Seegha source code:** MIT — see [`LICENSE`](LICENSE).
-- **Bundled components:** the executable includes FFmpeg (GPLv3) and other third-party components. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+## Licence
+Seegha's code: MIT (`LICENSE`). The exe bundles FFmpeg (GPLv3) and others — see `THIRD_PARTY_NOTICES.md`.
 
 ---
 
 <a id="العربية"></a>
+# صيغة (Seegha) — by R3D
 
-# 🇸🇦 العربية
+محوّل ملفات مجاني وسريع لويندوز: **صور وفيديو وصوت**، مع **رفع جودة بالذكاء الاصطناعي** (Real-ESRGAN).
+ملف واحد بدون تثبيت. الواجهة **عربي وإنجليزي** وتغيّرها فوراً من أعلى اليمين.
 
-## 📖 عن صيغة Seegha
+## أي ملف أنزّل؟
+| الملف | الحجم | رفع الجودة |
+|---|---|---|
+| **Seegha.exe** (الخفيف، الموصى به) | حوالي 35 ميجا | يحمّل حزمة 45 ميجا مرة وحدة أول ما تستخدمه |
+| **Seegha-Full.exe** | حوالي 80 ميجا | مدمج، يشتغل بدون إنترنت |
 
-**صيغة (Seegha)** برنامج مجاني وخفيف وسريع لنظام ويندوز، يساعدك على تحويل **الصور والفيديوهات والملفات الصوتية** بين الصيغ المدعومة، مع إمكانية **تحسين الجودة بالذكاء الاصطناعي باستخدام Real-ESRGAN**.
+نزّلهم من صفحة **Releases** (أو من آخر تشغيل في **Actions** ثم Artifacts).
 
-البرنامج محمول ولا يحتاج إلى تثبيت بالطريقة التقليدية، وتقدر تبدّل بين الواجهة العربية والإنجليزية مباشرةً من داخل البرنامج.
+## المميزات
+- صور: png, jpg, webp, bmp, gif, tiff, ico. فيديو: mp4, mkv, webm, avi, mov, gif. صوت: mp3, wav, flac, aac, ogg, m4a.
+- قائمة الصيغ تتغير حسب ملفاتك (فيديو ← صيغ فيديو فقط، صور ← صيغ صور فقط).
+- **خيارات الصوت للفيديو:** مع الصوت · **بدون صوت (فيديو فقط)** · صوت فقط.
+- **الوضع السريع:** يغيّر الحاوية (مثل mkv إلى mp4) بدون إعادة ترميز إذا أمكن.
+- **رفع الجودة بالذكاء الاصطناعي** للصور والفيديو (يعيد بناء التفاصيل فعلياً، مو تكبير عادي).
+- **مظهر فاتح وداكن** (يتبع ويندوز أول مرة)، زر **إيقاف**، سحب وإفلات، تحويل جماعي، سطر أوامر، ولا يكتب فوق الملفات الأصلية.
 
-## 📥 أي نسخة أحمّل؟
+## رفع الجودة — وش تتوقع
+- يحتاج كرت شاشة يدعم Vulkan (NVIDIA / AMD / Intel). ما فيه وضع معالج.
+- **الحمل على كرت الشاشة** (الافتراضي *خفيف*): *خفيف* يبقي الجهاز مرتاح، *متوازن* أسرع، *أقصى سرعة* الأسرع لكنه قد يبطّئ الجهاز كله.
+  Seegha يشغّل الذكاء الاصطناعي بأولوية منخفضة وعلى دفعات من 100 إطار، و**يعيد المحاولة تلقائياً بمقاطع أصغر** لو تعريف الكرت أعاد تشغيل نفسه.
+- **ناتج الفيديو محدود بدقة 4K (3840×2160).** فيديو 1080p بمضاعفة ×4 يصير 8K، وهذا يستهلك الرام والفيديو رام والقرص ويعلّق الجهاز،
+  فيخفض Seegha المضاعفة تلقائياً (1080p ← ×2) ويخبرك. النموذج الواقعي والأنمي ×4 فقط، والسريع يدعم ×2 و×3 و×4.
+- **الفيديو بطيء**: كل إطار يمر على النموذج، ويحتاج مساحة فاضية كبيرة على القرص (تُفحص قبل البدء).
+- الذكاء الاصطناعي **يخمّن تفاصيل معقولة**. النتيجة أحسن بكثير من التكبير العادي لكنها مو المصدر الأصلي عالي الدقة.
 
-| الملف | الحجم التقريبي | تحسين الجودة بالذكاء الاصطناعي |
-|---|---:|---|
-| **Seegha.exe** ⭐ الموصى به | حوالي 35 ميجابايت | يحمّل حزمة ذكاء اصطناعي بحجم 45 ميجابايت تقريبًا عند أول استخدام |
-| **Seegha-Full.exe** | حوالي 80 ميجابايت | حزمة الذكاء الاصطناعي مدمجة، ومصمم للعمل دون إنترنت |
-
-➡️ **[تحميل أحدث إصدار من Seegha](https://github.com/R3D126/Seegha/releases/latest)**
-
-اختر ملف `.exe` المناسب لك من صفحة **Releases**.
-
-## 🧰 المميزات
-
-- 🖼️ **الصور:** PNG وJPG وWebP وBMP وGIF وTIFF وICO.
-- 🎬 **الفيديو:** MP4 وMKV وWebM وAVI وMOV وGIF.
-- 🎵 **الصوت:** MP3 وWAV وFLAC وAAC وOGG وM4A.
-- 🎯 **قائمة صيغ ذكية:** تتغير الخيارات حسب نوع الملف المحدد.
-- 🔊 **خيارات صوت الفيديو:** الاحتفاظ بالصوت، أو إخراج الفيديو بدون صوت، أو استخراج الصوت فقط.
-- ⚡ **الوضع السريع:** تغيير حاوية الملف، مثل MKV إلى MP4، دون إعادة ترميز متى ما أمكن.
-- 🤖 **تحسين الجودة بالذكاء الاصطناعي:** تحسين الصور والفيديو باستخدام نماذج Real-ESRGAN.
-- 🎨 **مظهر يناسبك:** وضع داكن ووضع فاتح، مع اتباع مظهر ويندوز عند أول تشغيل.
-- 🛑 **زر إيقاف:** لإيقاف عملية التحويل عند الحاجة.
-- 📂 **تحويل جماعي وسحب وإفلات:** لمعالجة عدة ملفات بسهولة.
-- ⌨️ **دعم سطر الأوامر:** تنفيذ عمليات التحويل المدعومة من الطرفية.
-- 🛡️ **الحفاظ على ملفاتك الأصلية:** لا يستبدل Seegha الملفات الأصلية التي اخترتها.
-
-## 🤖 تحسين الجودة بالذكاء الاصطناعي — وش تتوقع؟
-
-- 🖥️ **يحتاج كرت شاشة:** يتطلب كرتًا يدعم Vulkan من NVIDIA أو AMD أو Intel. لا يتوفر وضع ذكاء اصطناعي يعمل على المعالج فقط.
-- 🎚️ **مستويات استخدام الكرت:** وضع **خفيف** للمحافظة على استجابة الجهاز، و**متوازن** للموازنة بين السرعة والاستجابة، و**أقصى سرعة** لأولوية الأداء، وقد يجعل الجهاز أقل استجابة.
-- 🔄 **التعامل مع تعطل التعريف:** تتم المعالجة بأولوية منخفضة وعلى دفعات من 100 إطار، وقد يعيد البرنامج المحاولة بمقاطع أصغر إذا أعاد تعريف كرت الشاشة التشغيل.
-- 📺 **الحد الأقصى للفيديو:** دقة الإخراج محدودة بـ **4K (3840 × 2160)**. إذا كانت المضاعفة المطلوبة تتجاوز هذا الحد، يخفض Seegha المضاعفة تلقائيًا ويبلغك. مثلًا، فيديو 1080p تتم مضاعفته إلى ×2 بدلًا من ×4.
-- 🧠 **النماذج:** نموذجا الواقعي والأنمي يدعمان ×4، بينما النموذج السريع يدعم ×2 و×3 و×4.
-- ⏳ **معالجة الفيديو تستغرق وقتًا:** لأن كل إطار يحتاج إلى معالجة، وقد تحتاج العملية إلى مساحة كبيرة فارغة على القرص. يفحص البرنامج المساحة المتاحة قبل البدء.
-- 💡 **توقعات واقعية:** الذكاء الاصطناعي يعيد بناء تفاصيل محتملة؛ وقد تكون النتيجة أوضح من التكبير العادي، لكنها لا تستعيد المعلومات الأصلية نفسها الموجودة في مصدر حقيقي عالي الدقة.
-
-## 🪟 توافق ويندوز
-
-| نظام التشغيل | الحالة |
+## الأنظمة المدعومة
+| النظام | الحالة |
 |---|---|
-| Windows 10 / 11 (64 بت) | ✅ مدعوم |
-| Windows 8 / 8.1 (64 بت) | ✅ مدعوم |
-| Windows 7 SP1 (64 بت) | ⚠️ مستهدف — راجع الملاحظات |
-| ويندوز 32 بت | ❌ غير مدعوم |
+| ويندوز 10 / 11 (64 بت) | مدعوم |
+| ويندوز 8 / 8.1 (64 بت) | مدعوم |
+| ويندوز 7 SP1 (64 بت) | مستهدف — شوف الملاحظات |
+| ويندوز 32 بت | **غير مدعوم** (نسخ ffmpeg وReal-ESRGAN 64 بت فقط) |
 
-**ملاحظات ويندوز 7:** ثبّت Service Pack 1 (SP1) وتحديث Universal C Runtime (**KB2999226**) أو شغّل Windows Update. بُني Seegha باستخدام Python 3.8 ونسخة FFmpeg موثّق توافقها مع ويندوز 7. كما يتطلب تحسين الجودة تعريفًا مناسبًا يدعم Vulkan.
+ويندوز 7: ثبّت SP1 وتحديث Universal C Runtime (**KB2999226**) أو شغّل Windows Update. البرنامج مبني ببايثون 3.8
+(آخر إصدار لويندوز 7) ونسخة ffmpeg الموثّق أنها متوافقة مع ويندوز 7. رفع الجودة يحتاج تعريف Vulkan.
+لو ffmpeg ما اشتغل عندك، ضع `ffmpeg.exe` الخاص بك جنب `Seegha.exe` وبيُستخدم أولاً.
 
-إذا لم يعمل FFmpeg على جهازك، جرّب وضع نسخة `ffmpeg.exe` الخاصة بك بجانب `Seegha.exe`؛ إذ يتحقق البرنامج منها أولًا.
+## الملفات اللي ينشئها البرنامج
+`%LOCALAPPDATA%\Seegha\` — `config.json` (اللغة)، `bin\` (ffmpeg يُفك مرة وحدة من داخل الـ exe)، `realesrgan\` (حزمة الذكاء الاصطناعي، النسخة الخفيفة فقط).
+إطارات رفع جودة الفيديو المؤقتة تكون في مجلد `seegha_*` داخل Temp وتنحذف عند الانتهاء أو الإيقاف أو عند التشغيل التالي.
 
-## 📁 الملفات التي ينشئها البرنامج
-
-يحفظ Seegha بياناته في:
-
-`%LOCALAPPDATA%\Seegha\`
-
-- `config.json` — إعدادات مثل لغة الواجهة.
-- `bin\` — ملفات FFmpeg التي تُفك من داخل البرنامج عند الحاجة.
-- `realesrgan\` — حزمة الذكاء الاصطناعي المستخدمة في النسخة الخفيفة.
-- مجلدات مؤقتة باسم `seegha_*` — لحفظ إطارات الفيديو أثناء تحسينها بالذكاء الاصطناعي.
-
-تُحذف الإطارات المؤقتة بعد انتهاء المعالجة، أو عند إيقاف المهمة، أو عند تشغيل البرنامج مرة أخرى.
-
-## ⌨️ أمثلة سطر الأوامر
-
-```bash
+## سطر الأوامر
+```
 Seegha.exe -t jpg *.png
-Seegha.exe -t mp4 --mute video.mkv
-Seegha.exe -t mp3 video.mp4
-Seegha.exe -t png --upscale 4 small.jpg
-Seegha.exe -t mp4 --upscale 2 --model fast --gpu balanced clip.mp4
-Seegha.exe --install-ai
+Seegha.exe -t mp4 --mute video.mkv            # فيديو بدون صوت
+Seegha.exe -t mp3 video.mp4                   # استخراج الصوت
+Seegha.exe -t png --upscale 4 small.jpg       # رفع جودة (يحمّل الحزمة لو لزم)
+Seegha.exe --install-ai                       # تحميل حزمة الذكاء الاصطناعي فقط
 ```
 
-أمثلة على الاستخدام:
-- تحويل صور PNG إلى JPG.
-- تحويل فيديو إلى MP4 بدون صوت باستخدام `--mute`.
-- استخراج الصوت من فيديو إلى MP3.
-- تحسين صورة بالذكاء الاصطناعي.
-- تحسين فيديو باستخدام النموذج السريع ووضع الكرت المتوازن.
-- تحميل حزمة الذكاء الاصطناعي فقط دون بدء التحويل.
+## البناء بنفسك
+ارفع على GitHub ← **Actions** ← *Build Seegha* ← نزّل `Seegha` و`Seegha-Full` من Artifacts. أنشئ tag مثل `v1.0.0` وينرفعون في Releases.
 
-نسخة EXE تعمل بواجهة رسومية، لذلك قد لا تعرض رسائل في نافذة الأوامر. لمشاهدة الرسائل، شغّل `python seegha.py ...` من السورس.
+## هل البرنامج آمن؟ (مضاد الفيروسات / VirusTotal)
+Seegha مفتوح المصدر، والـ exe يُبنى بواسطة GitHub Actions العلني في هذا المستودع (بدون خطوات مخفية).
+- قارن ملفك مع `SHA256SUMS.txt` في صفحة Releases، أو تحقق من شهادة البناء:
+  `gh attestation verify Seegha.exe --repo <owner>/<repo>`.
+- افحصه بنفسك على https://www.virustotal.com (ارفع الملف أو ابحث بقيمة SHA-256).
+- **ممكن كم محرك يعطي إنذار كاذب.** البرامج المغلّفة بـ PyInstaller معروفة بالإنذارات الكاذبة (كشف عام بالتعلم الآلي)،
+  والبرنامج يفك ffmpeg أول تشغيل. لو شفت إنذار من محرك غير معروف فهو غالباً كاذب، بلّغ عنه لتلك الشركة (عند كل شركة نموذج مجاني لإبلاغ الإنذار الكاذب).
+- البرنامج يلمس الملفات اللي تختارها فقط، ويكتب في `%LOCALAPPDATA%\Seegha` ومجلد Temp، ويستخدم الإنترنت **فقط** لتحميل حزمة الذكاء الاصطناعي الاختيارية من GitHub.
 
-## 🛠️ بناء البرنامج بنفسك
-
-1. ارفع التغييرات إلى GitHub.
-2. افتح **Actions** واختر **Build Seegha**.
-3. نزّل ملفات البناء `Seegha` و`Seegha-Full` من Artifacts.
-4. ارفع Tag مثل `v1.0.0` لنشر النسختين في Releases.
-
-لتشغيل البرنامج من السورس:
-
-```bash
-pip install -r requirements.txt
-python seegha.py
-```
-
-يجب أن يكون FFmpeg متاحًا في `PATH` أو موجودًا بجانب السكربت باسم `ffmpeg.exe`.
-
-## 🔐 الأمان ومضادات الفيروسات وVirusTotal
-
-السورس البرمجي وسير عمل البناء متاحان في هذا المستودع. وكما هو الحال مع أي ملف تنفيذي، يمكنك مراجعة السورس وفحص الملف إذا كانت لديك مخاوف.
-
-- 🧾 قارن الملف الذي حمّلته مع `SHA256SUMS.txt` في صفحة Releases، إذا كان الملف متوفرًا.
-- 🛡️ إذا كانت شهادة البناء متاحة، تحقّق منها باستخدام GitHub CLI:
-  ```bash
-  gh attestation verify Seegha.exe --repo <owner>/<repo>
-  ```
-- 🔎 يمكنك فحص الملف باستخدام [VirusTotal](https://www.virustotal.com/).
-
-**تنبيهات مضادات الفيروسات:** قد تحصل البرامج المجمعة باستخدام PyInstaller، أو التي تفك أدوات مرفقة عند التشغيل، على إنذارات كاذبة أحيانًا. لكن لا تفترض تلقائيًا أن كل إنذار غير صحيح؛ راجع تفاصيل الكشف، وتحقق من مصدر الملف وبصمته، وأبلغ الشركة المطوّرة لمضاد الفيروسات إذا كنت تعتقد أن الكشف خاطئ.
-
-صُمم Seegha لمعالجة الملفات التي تختارها، وحفظ بياناته في `%LOCALAPPDATA%\Seegha` والملفات المؤقتة في مجلد Temp، والاتصال بالإنترنت لتنزيل حزمة الذكاء الاصطناعي الاختيارية من GitHub عند الحاجة.
-
-## 📄 الترخيص
-
-- **كود Seegha:** ترخيص MIT — راجع [`LICENSE`](LICENSE).
-- **المكونات المرفقة:** يتضمن البرنامج FFmpeg (GPLv3) ومكونات أخرى من جهات خارجية. راجع [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
-
----
-
-<div align="center">
-
-### 💚 Seegha (صيغة) — by R3D
-
-**حوّل. حسّن. استمتع.**  
-**Convert. Enhance. Enjoy.**
-
-</div>
+## الترخيص
+كود Seegha: MIT (`LICENSE`). الـ exe يحتوي FFmpeg (GPLv3) وغيره — شوف `THIRD_PARTY_NOTICES.md`.
